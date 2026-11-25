@@ -17,6 +17,9 @@ importers:
       gsap:
         specifier: ^3.12.5
         version: 3.15.1
+      lucide-react:
+        specifier: ^1.79.0
+        version: 1.79.0(@types/react@19.3.0)(react@19.0.0)
       matter-js:
         specifier: ^0.20.0
         version: 0.20.0
@@ -304,6 +307,15 @@ packages:
 
   is-arrayish@0.3.4:
     resolution: {integrity: sha512-m6UrgzFVUYawGBh1dUsWR5M2Clqic9RVXC/9f8ceNlv2IcO9j9J/z8UoCLPqtsPBFNzEpfR3xftohbfqDx8EQA==}
+
+  lucide-react@1.79.0:
+    resolution: {integrity: sha512-MDHKxzUobPRyQgt4hHO1z+pUQJKYMvenh8qw+ndWQE0Wg+Hbjli/ZrkZXBGmRBrMvvqDRjkmQj0Z5RbeL/ogNw==}
+    peerDependencies:
+      '@types/react': '*'
+      react: ^16.5.1 || ^17.0.0 || ^18.0.0 || ^19.0.0
+    peerDependenciesMeta:
+      '@types/react':
+        optional: true
 
   matter-js@0.20.0:
     resolution: {integrity: sha512-iC9fYR7zVT3HppNnsFsp9XOoQdQN2tUyfaKg4CHLH8bN+j6GT4Gw7IH2rP0tflAebrHFw730RR3DkVSZRX8hwA==}
@@ -598,6 +610,12 @@ snapshots:
 
   is-arrayish@0.3.4:
     optional: true
+
+  lucide-react@1.79.0(@types/react@19.3.0)(react@19.0.0):
+    dependencies:
+      react: 19.0.0
+    optionalDependencies:
+      '@types/react': 19.3.0
 
   matter-js@0.20.0: {}
 

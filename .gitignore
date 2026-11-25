@@ -76,6 +76,8 @@ web_modules/
 
 # Next.js build output
 .next
+.next-dev
+.next-verify
 out
 
 # Nuxt.js build / generate output
@@ -155,3 +157,13 @@ vite.config.ts.timestamp-*
 .nx/cache
 .nx/workspace-data
 .nx/migrate-runs
+
+# OS & Large Media / Archives
+.DS_Store
+Thumbs.db
+*.mp4
+*.mov
+*.zip
+*.exe
+*.csv
+*.sqlite*
