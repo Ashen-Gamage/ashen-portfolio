@@ -13,7 +13,12 @@ export const profile = {
     {
       institution: 'Sri Lanka Institute of Information Technology (SLIIT)', //
       degree: 'B.Sc. (Hons) in Information Technology / Data Science', //
-      period: 'Undergraduate' //
+      period: '2025–present · Completed Year 2, Semester 1' //
+    },
+    {
+      institution: 'D.M.C. College',
+      degree: 'G.C.E. Advanced Level · Combined Mathematics',
+      period: '2021/22 · Physics (C), Chemistry (C), Combined Mathematics (S)'
     }
   ],
   leadership: [
@@ -29,32 +34,43 @@ export const profile = {
     { id: 'sklearn', label: 'scikit-learn', meta: 'Modeling' },
     { id: 'powerbi', label: 'Power BI', meta: 'Analytics' },
     { id: 'r', label: 'R', meta: 'Statistics' },
+    { id: 'canva', label: 'Canva', meta: 'Design & social content' },
+    { id: 'capcut', label: 'CapCut', meta: 'Video editing' },
+    { id: 'premiere', label: 'Adobe Premiere Pro', meta: 'Video editing' },
+    { id: 'media', label: 'Video & post production', meta: 'Creative media' },
   ] as FolderItem[], //
   projects: [
     {
-      title: 'Ames House Price Prediction (IT3091)', //
-      category: 'Machine Learning',
+      title: 'TaxiWebApp', //
+      category: 'Software Engineering & Web Dev',
       summary:
-        'Categorical missing-value imputation, Dummy Regressor baselines, and Linear Regression modeling.', //
-      stack: ['Python', 'pandas', 'scikit-learn'] //
+        'Uber-style Java web application covering customer ride booking, rider acceptance, cash and card payments, driver wallet calculation, and feedback, built with JavaScript, Java, and SQL Server.', //
+      stack: ['JavaScript', 'java', 'SQL Server Management Studio'] //
     },
     {
-      title: 'Data Warehousing & BI Pipeline (IT3101)', //
-      category: 'Data Engineering & BI',
-      summary: 'ETL pipeline, SQLite data mart, and interactive Power BI dashboard.', //
-      stack: ['Python', 'SQLite', 'Power BI'] //
-    },
-    {
-      title: 'Statistical Modeling in R', //
+      title: 'Traffic Volume Analysis(IT3091)', //
       category: 'Statistical Modeling',
-      summary: 'Statistical modeling group project and presentation built in R.', //
+      summary:
+        'Categorical missing-value imputation, Dummy Regressor baselines, Statistical Prediction Methods and Linear Regression modeling.', //
       stack: ['R', 'Statistics'] //
     },
     {
-      title: 'sincerely.lk-v2', //
+      title: 'Tourism Booking Demand & Cancellation Analytics', //
+      category: 'Data Warehousing & BI',
+      summary: ' Data Quality, Warehouse Architecture, Star Schema, ETL pipeline, SQLite data mart, and interactive Power BI dashboard.', //
+      stack: ['Python', 'SQLite', 'Power BI'] //
+    },
+    {
+      title: 'House Prices', //
+      category: 'Machine Learning & Predictive Modeling',
+      summary: 'Price Prediction, Feature Engineering, and Build and compare regression models that predict the sale price of a property using property characteristics available before the sale..', //
+      stack: ['Python', 'scikit-learn' , 'pandas'] //
+    },
+    {
+      title: 'Sincerely Sri Lanka', //
       category: 'Web & Interactive UI',
       summary:
-        'Web platform built with Next.js and TypeScript featuring custom SVG elements and scroll-driven Earth zoom transitions.', //
+      'Web platform built with Next.js and TypeScript featuring custom SVG elements and scroll driven Earth zoom transitions showcasing the beauty of Sri Lanka and travel options.', //
       stack: ['Next.js', 'TypeScript', 'SVG'] //
     },
     {

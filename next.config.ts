@@ -1,7 +1,7 @@
 import type { NextConfig } from 'next';
 
 const isProd = process.env.NODE_ENV === 'production';
-const repoName = 'portfolio'; // Change to '' if using <username>.github.io
+const repoName = 'ashen-portfolio'; // Match the GitHub Pages project repository name.
 
 const nextConfig: NextConfig = {
   output: 'export',

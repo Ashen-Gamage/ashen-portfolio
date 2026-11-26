@@ -7,6 +7,9 @@
   position: relative;
   display: inline-flex;
   max-width: 100%;
+  overflow: hidden;
+  border-radius: 999px;
+  isolation: isolate;
   font-size: var(--gn-font);
   line-height: 1.2;
 }

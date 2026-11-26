@@ -328,11 +328,6 @@ const locate = (gl, program, names) => {
   return result;
 };
 
-const wanderAt = (t, w, h) => [
-  w * (0.5 + 0.32 * Math.sin(t * 0.53) + 0.08 * Math.sin(t * 1.31 + 0.6)),
-  h * (0.5 + 0.27 * Math.sin(t * 0.71 + 1.1) + 0.07 * Math.cos(t * 1.57))
-];
-
 const measureEdge = (context, image) => {
   const size = 32;
   context.canvas.width = size;
@@ -383,7 +378,6 @@ const HalftoneReveal = ({
   softness = 0.6,
   linger = 1.2,
   reverse = false,
-  wander = false,
   clickBurst = true,
   intro = true,
   className = '',
@@ -411,7 +405,6 @@ const HalftoneReveal = ({
     softness: clamp(softness, 0, 1),
     linger: Math.max(0, linger),
     reverse,
-    wander,
     clickBurst,
     intro
   };
@@ -519,7 +512,7 @@ const HalftoneReveal = ({
     const colorCache = new Map();
     const bursts = [];
     const burstData = new Float32Array(MAX_BURSTS * 4);
-    const pointer = { x: 0, y: 0, inside: false, fresh: true, placed: false };
+    const pointer = { x: 0, y: 0, inside: false, moving: false, fresh: true };
     const brush = { x: 0, y: 0, px: 0, py: 0 };
     const state = {
       width: 1,
@@ -530,7 +523,6 @@ const HalftoneReveal = ({
       key: 0,
       introStart: 0,
       presence: 0,
-      drift: 0,
       trailUntil: 0
     };
     let raf = 0;
@@ -562,6 +554,11 @@ const HalftoneReveal = ({
       return [(width - w) / 2, (height - h) / 2, w, h];
     };
 
+    const isInsidePhoto = (x, y, s = settingsRef.current) => {
+      const [fx, fy, fw, fh] = frameRect(s);
+      return x >= fx && x <= fx + fw && y >= fy && y <= fy + fh;
+    };
+
     let resizePending = false;
     const applyResize = () => {
       const width = Math.max(1, container.clientWidth);
@@ -582,10 +579,6 @@ const HalftoneReveal = ({
         gl.blitFramebuffer(0, 0, previous[0].width, previous[0].height, 0, 0, mw, mh, gl.COLOR_BUFFER_BIT, gl.NEAREST);
         gl.bindFramebuffer(gl.FRAMEBUFFER, null);
         previous.forEach(destroyMask);
-      }
-      if (!pointer.placed) {
-        pointer.x = width / 2;
-        pointer.y = height / 2;
       }
     };
 
@@ -669,28 +662,16 @@ const HalftoneReveal = ({
       const dt = last ? Math.min(0.05, Math.max(0, (now - last) / 1000)) : 1 / 60;
       last = now;
 
-      const wandering = s.wander && !reduce;
-      let targetX = pointer.x;
-      let targetY = pointer.y;
-      if (!pointer.inside && wandering) {
-        state.drift = Math.min(1, state.drift + dt / 1.2);
-        const [wx, wy] = wanderAt(now / 1000, state.width, state.height);
-        const k = state.drift * state.drift * (3 - 2 * state.drift);
-        targetX += (wx - targetX) * k;
-        targetY += (wy - targetY) * k;
-      } else {
-        state.drift = 0;
-      }
-      const engaged = pointer.inside || wandering;
+      const engaged = pointer.inside && pointer.moving;
       state.presence += ((engaged ? 1 : 0) - state.presence) * (1 - Math.exp(-dt / 0.16));
       if (pointer.fresh) {
-        brush.x = brush.px = targetX;
-        brush.y = brush.py = targetY;
+        brush.x = brush.px = pointer.x;
+        brush.y = brush.py = pointer.y;
         pointer.fresh = false;
       } else {
         const follow = 1 - Math.exp(-dt / 0.035);
-        brush.x += (targetX - brush.x) * follow;
-        brush.y += (targetY - brush.y) * follow;
+        brush.x += (pointer.x - brush.x) * follow;
+        brush.y += (pointer.y - brush.y) * follow;
       }
 
       burstData.fill(0);
@@ -752,18 +733,25 @@ const HalftoneReveal = ({
       const rect = container.getBoundingClientRect();
       pointer.x = event.clientX - rect.left;
       pointer.y = event.clientY - rect.top;
-      pointer.placed = true;
     };
     const onMove = event => {
       locatePointer(event);
-      if (!pointer.inside) {
-        pointer.inside = true;
-        pointer.fresh = true;
+      const overPhoto = isInsidePhoto(pointer.x, pointer.y);
+      if (overPhoto) {
+        if (!pointer.inside) {
+          pointer.inside = true;
+          pointer.fresh = true;
+        }
+        pointer.moving = true;
+      } else {
+        pointer.inside = false;
+        pointer.moving = false;
       }
       wake();
     };
     const onLeave = () => {
       pointer.inside = false;
+      pointer.moving = false;
       wake();
     };
     const onDown = event => {
