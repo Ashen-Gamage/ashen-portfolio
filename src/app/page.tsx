@@ -20,8 +20,8 @@ const NAV_ITEMS = [
   { label: 'About', href: '#about' },
   { label: 'Projects', href: '#projects' },
   { label: 'Skills', href: '#skills' },
-  { label: 'Certifications', href: '#certifications' },
-  { label: 'Volunteering', href: '#volunteering' },
+  { label: 'Certifications', mobileLabel: 'Certs', href: '#certifications' },
+  { label: 'Volunteering', mobileLabel: 'Volunteer', href: '#volunteering' },
   { label: 'Sports', href: '#sports' },
   { label: 'Contact', href: '#contact' },
 ];
@@ -34,18 +34,18 @@ const TOOL_LOGOS = profile.skills.map(skill => ({
 }));
 
 const VOLUNTEER_GALLERY = [
-  { image: './images/New%20folder%20(3)/111.jpg', label: 'Kokila Rawaya 2025', alt: 'Ashen with teammates at an AIESEC Legacy event' },
-  { image: './images/New%20folder%20(3)/1111.jpg', label: 'Kokila Rawaya 2025', alt: 'AIESEC team taking part in an outdoor event' },
-  { image: './images/New%20folder%20(3)/565116857_1192243082949603_9204905340908817761_n.jpg', label: 'SLIIT Mini Hackathon 2025', alt: 'Participants at a SLIIT mini hackathon' },
-  { image: './images/New%20folder%20(3)/565154036_1192247966282448_8713559949124670242_n.jpg', label: 'SLIIT Mini Hackathon 2025', alt: 'Students collaborating at a SLIIT event' },
-  { image: './images/New%20folder%20(3)/20260602_155250.jpg', label: 'IGV IPS Session', alt: 'Students collaborating at a SLIIT event' },
-  { image: './images/New%20folder%20(3)/20260602_161343.jpg', label: 'IGV IPS Session', alt: 'Students collaborating at a SLIIT event' },
-  { image: './images/New%20folder%20(3)/IMG_1134.jpg', label: 'AIESEC Volunteering', alt: 'Students collaborating at a SLIIT event' },
-  { image: './images/New%20folder%20(3)/IMG_1087.jpg', label: 'AIESEC Volunteering', alt: 'Students collaborating at a SLIIT event' },
-  { image: './images/New%20folder%20(3)/IMG_2091.jpg', label: 'Volunteering at Sea Turtle Conservation Center', alt: 'Students collaborating at a SLIIT event' },
-  { image: './images/New%20folder%20(3)/IMG_2105.jpg', label: 'Volunteering at Sea Turtle Conservation Center', alt: 'Students collaborating at a SLIIT event' },
-  { image: './images/New%20folder%20(3)/IMG_2088.jpg', label: 'Volunteering at Sea Turtle Conservation Center', alt: 'Students collaborating at a SLIIT event' },
-  { image: './images/New%20folder%20(3)/IMG_2021.jpg', label: 'Volunteering at Sea Turtle Conservation Center', alt: 'Students collaborating at a SLIIT event' },
+  { image: './images/volunteering/111.webp', label: 'Kokila Rawaya 2025', alt: 'Ashen with teammates at an AIESEC Legacy event' },
+  { image: './images/volunteering/1111.webp', label: 'Kokila Rawaya 2025', alt: 'AIESEC team taking part in an outdoor event' },
+  { image: './images/volunteering/565116857_1192243082949603_9204905340908817761_n.webp', label: 'SLIIT Mini Hackathon 2025', alt: 'Participants at a SLIIT mini hackathon' },
+  { image: './images/volunteering/565154036_1192247966282448_8713559949124670242_n.webp', label: 'SLIIT Mini Hackathon 2025', alt: 'Students collaborating at a SLIIT event' },
+  { image: './images/volunteering/20260602_155250.webp', label: 'IGV IPS Session', alt: 'Students collaborating at an incoming volunteer session' },
+  { image: './images/volunteering/20260602_161343.webp', label: 'IGV IPS Session', alt: 'Students collaborating at an incoming volunteer session' },
+  { image: './images/volunteering/IMG_1134.webp', label: 'AIESEC Volunteering', alt: 'Ashen taking part in an AIESEC volunteering activity' },
+  { image: './images/volunteering/IMG_1087.webp', label: 'AIESEC Volunteering', alt: 'AIESEC members at a volunteering activity' },
+  { image: './images/volunteering/IMG_2091.webp', label: 'Sea Turtle Conservation Center', alt: 'Volunteering at the Sea Turtle Conservation Center' },
+  { image: './images/volunteering/IMG_2105.webp', label: 'Sea Turtle Conservation Center', alt: 'Volunteering at the Sea Turtle Conservation Center' },
+  { image: './images/volunteering/IMG_2088.webp', label: 'Sea Turtle Conservation Center', alt: 'Volunteering at the Sea Turtle Conservation Center' },
+  { image: './images/volunteering/IMG_2021.webp', label: 'Sea Turtle Conservation Center', alt: 'Volunteering at the Sea Turtle Conservation Center' },
 ];
 
 const LEADERSHIP_DETAILS: Record<string, { title: string; organization: string; period: string; status?: string; summary: string; highlights: string[] }> = {

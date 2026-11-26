@@ -2,6 +2,7 @@ import type { CSSProperties } from 'react';
 
 export interface GooeyNavItem {
   label: string;
+  mobileLabel?: string;
   href?: string;
 }
 

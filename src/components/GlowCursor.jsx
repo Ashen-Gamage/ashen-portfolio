@@ -341,6 +341,11 @@ const GlowCursor = ({
   useEffect(() => {
     const container = containerRef.current;
     const canvas = canvasRef.current;
+    const touchInput = window.matchMedia?.('(hover: none), (pointer: coarse)').matches ?? false;
+    if (!container || !canvas || touchInput) {
+      if (canvas) canvas.style.display = 'none';
+      return undefined;
+    }
     const gl = canvas?.getContext('webgl2', {
       alpha: true,
       premultipliedAlpha: true,
@@ -348,7 +353,7 @@ const GlowCursor = ({
       depth: false,
       stencil: false
     });
-    if (!container || !canvas || !gl || !gl.getExtension('EXT_color_buffer_float')) return undefined;
+    if (!gl || !gl.getExtension('EXT_color_buffer_float')) return undefined;
 
     const vertexShader = compile(gl, gl.VERTEX_SHADER, VERTEX);
     if (!vertexShader) return undefined;

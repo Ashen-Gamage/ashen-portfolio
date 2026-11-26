@@ -124,6 +124,7 @@
   width: 1.15em;
   height: 1.15em;
 }
+.gooey-nav__label--mobile { display: none; }
 
 .gooey-nav__rim {
   position: absolute;
@@ -139,4 +140,14 @@
   .gooey-nav__link:hover {
     color: var(--gn-ink);
   }
+}
+
+@media (max-width: 760px) {
+  .gooey-nav { --gn-font: 11px; width: 100%; }
+  .gooey-nav__stage { width: 100%; }
+  .gooey-nav__list { display: grid; width: 100%; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 2px; }
+  .gooey-nav__item { min-width: 0; justify-content: center; }
+  .gooey-nav__link { justify-content: center; min-width: 0; min-height: 44px; gap: 0; padding: 8px 2px; font-size: clamp(10px, 2.8vw, 11px); }
+  .gooey-nav__label--desktop { display: none; }
+  .gooey-nav__label--mobile { display: inline; }
 }

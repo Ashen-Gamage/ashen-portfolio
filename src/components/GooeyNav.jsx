@@ -745,7 +745,14 @@ const GooeyNav = ({
       const content = (
         <>
           {item.icon && <span className="gooey-nav__icon">{item.icon}</span>}
-          {item.label && <span className="gooey-nav__label">{item.label}</span>}
+          {item.label && (
+            <span className="gooey-nav__label">
+              {item.mobileLabel ? <>
+                <span className="gooey-nav__label--desktop">{item.label}</span>
+                <span className="gooey-nav__label--mobile">{item.mobileLabel}</span>
+              </> : item.label}
+            </span>
+          )}
         </>
       );
       if (!interactive) {
@@ -757,6 +764,7 @@ const GooeyNav = ({
       }
       const shared = {
         className: 'gooey-nav__link',
+        'aria-label': item.label,
         'aria-current': index === current ? 'page' : undefined,
         onClick: event => {
           if (!item.href || item.href === '#') event.preventDefault();
